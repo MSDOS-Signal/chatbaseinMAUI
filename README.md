@@ -55,7 +55,7 @@ MauiApp1/
 ### 构建步骤  
 1. 克隆项目
 ```   
-git clone <repository-url>
+git clone git@github.com:MSDOS-Signal/chatbaseinMAUI.git
 cd MauiApp1  
 ```
 2. 还原 NuGet 包
