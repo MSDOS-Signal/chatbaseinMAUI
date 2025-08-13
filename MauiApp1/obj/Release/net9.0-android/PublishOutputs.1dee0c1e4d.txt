@@ -1,0 +1,3 @@
+D:\C#app\MauiApp1\MauiApp1\bin\Release\Android\com.xinhao.ai-Signed.apk
+D:\C#app\MauiApp1\MauiApp1\bin\Release\Android\com.xinhao.ai.apk
+D:\C#app\MauiApp1\MauiApp1\bin\Release\Android\_Microsoft.Android.Resource.Designer.dll

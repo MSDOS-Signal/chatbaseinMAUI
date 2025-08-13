@@ -1,0 +1,139 @@
+﻿<?xml version = "1.0" encoding = "UTF-8" ?>
+<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MauiApp1"
+             xmlns:converters="clr-namespace:MauiApp1.Converters"
+             x:Class="MauiApp1.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- 主题颜色 -->
+            <Color x:Key="PrimaryColor">#6366F1</Color>
+            <Color x:Key="PrimaryDarkColor">#4F46E5</Color>
+            <Color x:Key="SecondaryColor">#8B5CF6</Color>
+            <Color x:Key="AccentColor">#06B6D4</Color>
+            <Color x:Key="SuccessColor">#10B981</Color>
+            <Color x:Key="WarningColor">#F59E0B</Color>
+            <Color x:Key="ErrorColor">#EF4444</Color>
+
+            <!-- 浅色主题 -->
+            <Color x:Key="BackgroundColorLight">#FFFFFF</Color>
+            <Color x:Key="SurfaceColorLight">#F8FAFC</Color>
+            <Color x:Key="CardColorLight">#FFFFFF</Color>
+            <Color x:Key="TextColorLight">#1E293B</Color>
+            <Color x:Key="TextSecondaryColorLight">#64748B</Color>
+            <Color x:Key="BorderColorLight">#E2E8F0</Color>
+
+            <!-- 深色主题 -->
+            <Color x:Key="BackgroundColorDark">#0F172A</Color>
+            <Color x:Key="SurfaceColorDark">#1E293B</Color>
+            <Color x:Key="CardColorDark">#334155</Color>
+            <Color x:Key="TextColorDark">#F1F5F9</Color>
+            <Color x:Key="TextSecondaryColorDark">#94A3B8</Color>
+            <Color x:Key="BorderColorDark">#475569</Color>
+
+                    <!-- 渐变背景 -->
+        <LinearGradientBrush x:Key="PrimaryGradient">
+            <GradientStop Color="#6366F1" Offset="0.0" />
+            <GradientStop Color="#8B5CF6" Offset="1.0" />
+        </LinearGradientBrush>
+        
+        <!-- 新对话按钮渐变 - 华丽高级版 -->
+        <LinearGradientBrush x:Key="NewChatGradient">
+            <GradientStop Color="#667eea" Offset="0.0" />
+            <GradientStop Color="#764ba2" Offset="0.5" />
+            <GradientStop Color="#f093fb" Offset="1.0" />
+        </LinearGradientBrush>
+        
+        <!-- 新对话按钮阴影效果 -->
+        <LinearGradientBrush x:Key="NewChatGradientHover">
+            <GradientStop Color="#764ba2" Offset="0.0" />
+            <GradientStop Color="#f093fb" Offset="0.5" />
+            <GradientStop Color="#667eea" Offset="1.0" />
+        </LinearGradientBrush>
+        
+        <!-- AI消息渐变背景 - 科技感十足的蓝紫渐变 -->
+        <LinearGradientBrush x:Key="AIGradient">
+            <GradientStop Color="#667eea" Offset="0.0" />
+            <GradientStop Color="#764ba2" Offset="0.5" />
+            <GradientStop Color="#f093fb" Offset="1.0" />
+        </LinearGradientBrush>
+
+            <LinearGradientBrush x:Key="BackgroundGradientLight">
+                <GradientStop Color="#F8FAFC" Offset="0.0" />
+                <GradientStop Color="#E2E8F0" Offset="1.0" />
+            </LinearGradientBrush>
+
+            <LinearGradientBrush x:Key="BackgroundGradientDark">
+                <GradientStop Color="#0F172A" Offset="0.0" />
+                <GradientStop Color="#1E293B" Offset="1.0" />
+            </LinearGradientBrush>
+
+            <!-- 样式 -->
+            <Style x:Key="ChatBubbleUser" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource PrimaryColor}, Dark={StaticResource PrimaryColor}}" />
+                <Setter Property="CornerRadius" Value="20" />
+                <Setter Property="Padding" Value="16,12" />
+                <Setter Property="Margin" Value="8,4" />
+                <Setter Property="HorizontalOptions" Value="End" />
+                <Setter Property="MaximumWidthRequest" Value="280" />
+            </Style>
+
+            <Style x:Key="ChatBubbleAssistant" TargetType="Frame">
+                <Setter Property="Background" Value="{StaticResource AIGradient}" />
+                <Setter Property="CornerRadius" Value="20" />
+                <Setter Property="Padding" Value="16,12" />
+                <Setter Property="Margin" Value="8,4" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="MaximumWidthRequest" Value="280" />
+                <Setter Property="HasShadow" Value="True" />
+            </Style>
+
+            <Style x:Key="MessageText" TargetType="Label">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="LineBreakMode" Value="WordWrap" />
+            </Style>
+
+            <Style x:Key="MessageTextUser" TargetType="Label" BasedOn="{StaticResource MessageText}">
+                <Setter Property="TextColor" Value="White" />
+            </Style>
+
+            <Style x:Key="InputBox" TargetType="Entry">
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource CardColorLight}, Dark={StaticResource CardColorDark}}" />
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}" />
+                <Setter Property="PlaceholderColor" Value="{AppThemeBinding Light={StaticResource TextSecondaryColorLight}, Dark={StaticResource TextSecondaryColorDark}}" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="Placeholder" Value="输入消息..." />
+            </Style>
+
+            <Style x:Key="SendButton" TargetType="Button">
+                <Setter Property="Background" Value="{StaticResource PrimaryGradient}" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="CornerRadius" Value="25" />
+                <Setter Property="Padding" Value="20,12" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+
+            <Style x:Key="ThemeToggleButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}" />
+                <Setter Property="FontSize" Value="24" />
+                <Setter Property="Padding" Value="12" />
+                <Setter Property="CornerRadius" Value="20" />
+            </Style>
+
+            <!-- 转换器 -->
+                    <converters:BoolToThemeIconConverter x:Key="BoolToThemeIconConverter" />
+        <converters:StringToBoolConverter x:Key="StringToBoolConverter" />
+        <converters:BoolToMarginConverter x:Key="BoolToMarginConverter" />
+        <converters:MarkdownConverter x:Key="MarkdownConverter" />
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

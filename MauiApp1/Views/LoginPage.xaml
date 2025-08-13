@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.Views.LoginPage"
+             Title="登录">
+    
+    <Grid Background="{AppThemeBinding Light={StaticResource BackgroundGradientLight}, Dark={StaticResource BackgroundGradientDark}}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- 标题区域 -->
+        <StackLayout Grid.Row="0" 
+                     VerticalOptions="Center" 
+                     HorizontalOptions="Center"
+                     Spacing="20">
+            <Label Text="炘灏AI" 
+                   FontSize="48" 
+                   FontAttributes="Bold"
+                   TextColor="{AppThemeBinding Light={StaticResource PrimaryColor}, Dark={StaticResource PrimaryColor}}"
+                   HorizontalOptions="Center" />
+            
+            <Label Text="智能对话助手" 
+                   FontSize="18"
+                   TextColor="{AppThemeBinding Light={StaticResource TextSecondaryColorLight}, Dark={StaticResource TextSecondaryColorDark}}"
+                   HorizontalOptions="Center" />
+        </StackLayout>
+
+        <!-- 登录表单 -->
+        <Frame Grid.Row="1" 
+               Background="{AppThemeBinding Light={StaticResource CardColorLight}, Dark={StaticResource CardColorDark}}"
+               CornerRadius="20"
+               Margin="40,20"
+               Padding="30,40">
+            <StackLayout Spacing="20">
+                <Label Text="用户登录" 
+                       FontSize="24" 
+                       FontAttributes="Bold"
+                       TextColor="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}"
+                       HorizontalOptions="Center" />
+
+                <Entry x:Name="UsernameEntry"
+                       Placeholder="用户名"
+                       Style="{StaticResource InputBox}"
+                       Text="{Binding Username}" />
+
+                <Entry x:Name="PasswordEntry"
+                       Placeholder="密码"
+                       IsPassword="True"
+                       Style="{StaticResource InputBox}"
+                       Text="{Binding Password}" />
+
+                <Button Text="登录"
+                       Style="{StaticResource SendButton}"
+                       Command="{Binding LoginCommand}"
+                       IsEnabled="{Binding CanLogin}" />
+
+                <Button Text="注册新用户"
+                       Style="{StaticResource ThemeToggleButton}"
+                       Command="{Binding ShowRegisterCommand}" />
+
+                <Label Text="{Binding ErrorMessage}"
+                       TextColor="{StaticResource ErrorColor}"
+                       HorizontalOptions="Center"
+                       IsVisible="{Binding HasError}" />
+            </StackLayout>
+        </Frame>
+
+        <!-- 底部信息 -->
+        <StackLayout Grid.Row="2" 
+                     VerticalOptions="End"
+                     HorizontalOptions="Center"
+                     Margin="20">
+            <Label Text="基于 Qwen2.5(72B) 大模型" 
+                   FontSize="14"
+                   TextColor="{AppThemeBinding Light={StaticResource TextSecondaryColorLight}, Dark={StaticResource TextSecondaryColorDark}}"
+                   HorizontalOptions="Center" />
+        </StackLayout>
+    </Grid>
+</ContentPage>
